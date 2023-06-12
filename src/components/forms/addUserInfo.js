@@ -132,7 +132,8 @@ export default function AddUserInfo({ operator }) {
           },
           {
             field: "Actions",
-            headerName: Actions,
+            headerName: 'Actions',
+            renderCell:Actions,
             flex: 1,
           },
         ];
