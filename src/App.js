@@ -19,7 +19,7 @@ const menuItemsAdmin = [
   { name: "Add Resource", path: "/AddResource" },
   { name: "Update Resource", path: "/UpdateResource" },
   { name: "Update Project", path: "/UpdateProject" },
-  { name: "AddUser Info", path: "/AddUserInfo" },
+  { name: "View User Info", path: "/AddUserInfo" },
 ];
 
 const menuItemsUser = [
@@ -68,7 +68,11 @@ function App() {
                 element={<UpdateResource />}
               />
               <Route exact path="/UpdateProject" element={<UpdateProject />} />
-              <Route exact path="/AddUserInfo" element={<AddUserInfo />} />
+              <Route
+                exact
+                path="/AddUserInfo"
+                element={<AddUserInfo operator={useDetails.email} />}
+              />
             </Routes>
           </Box>
         </>
