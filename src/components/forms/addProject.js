@@ -17,6 +17,7 @@ export default function AddProject() {
       })
       .then(function (response) {
         console.log(response);
+        getProjects();
       })
       .catch(function (error) {
         console.log(error);
