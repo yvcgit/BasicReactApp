@@ -30,7 +30,7 @@ export default function AddUserInfo({ operator }) {
         onClick={() => {
           axios
             .delete(
-              `http://172.17.160.1:2023/ResourceMappedById/${props.row.id}`
+              `http://172.17.160.1:2023/deleteResourceMappedById/${props.row.id}`
             )
             .then((response) => {
               console.log(response.data);
