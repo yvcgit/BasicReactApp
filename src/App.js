@@ -42,7 +42,7 @@ function App() {
     <div className="App">
       {isLoggedIn ? (
         <>
-          <Header
+          <Header 
             menuItems={
               useDetails.email === "user" ? menuItemsUser : menuItemsAdmin
             }

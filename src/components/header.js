@@ -17,10 +17,10 @@ import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
 
 const drawerWidth = 240;
-const navItems = ["My Account"];
+const navItems = ["Logout"];
 
 function Header(props) {
-  const { window, menuItems = [] } = props;
+  const {  menuItems = [] } = props;
   const [open, setMenuOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -33,7 +33,7 @@ function Header(props) {
       sx={{ textAlign: "center", width: "200px" }}
     >
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Menu
       </Typography>
       <Divider />
       <List>
@@ -56,8 +56,7 @@ function Header(props) {
     </Box>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -77,25 +76,24 @@ function Header(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            Application
+            Resource Management
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                size="small"
-                sx={{ color: "#fff", border: "1px solid #fff" }}
-                variant="outlined"
-              >
-                {item}
-              </Button>
-            ))}
+            <Button
+              size="small"
+              onClick={() => {
+                window.location.reload();
+              }}
+              sx={{ color: "#fff", border: "1px solid #fff" }}
+              variant="outlined"
+            >
+              {"Logout"}
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
       <Box component="nav">
         <Drawer
-          container={container}
           variant="temporary"
           open={open}
           onClose={handleDrawerToggle}
