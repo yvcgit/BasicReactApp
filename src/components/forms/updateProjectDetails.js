@@ -88,6 +88,7 @@ export default function UpdateProject() {
                   <TextField
                     fullWidth
                     label="Project Name"
+                    value={ProjectsUpdated.ProjectName}
                     variant="outlined"
                     type="text"
                     onChange={(e) => {

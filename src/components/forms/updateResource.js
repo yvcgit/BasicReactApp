@@ -89,6 +89,7 @@ export default function UpdateResource() {
                   <TextField
                     fullWidth
                     label="Resource Name"
+                    value={ProjectsUpdated.resourceName}
                     variant="outlined"
                     type="text"
                     onChange={(e) => {
