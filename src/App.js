@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
 import React, { useEffect } from "react";
 import Home from "./components/home";
-import axios from 'axios';
+import axios from "axios";
 
 const menuItemsAdmin = [
   { name: "Home", path: "/Home" },
@@ -31,12 +31,12 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [useDetails, setUseDetails] = React.useState({});
 
-  useEffect(() => {
-    axios
-      .get("http://172.17.160.1:2023/getMessage")
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
-  }, [""]);
+  // useEffect(() => {
+  //   axios
+  //     .get("http://172.17.160.1:2023/getMessage")
+  //     .then((response) => console.log(response))
+  //     .catch((error) => console.log(error));
+  // }, [""]);
 
   return (
     <div className="App">
@@ -78,12 +78,6 @@ function App() {
           setUseDetails={setUseDetails}
         />
       )}
-      {/* <LoginForm />
-      <AddResource/>
-      <AddProject/>
-      <UpdateResource/>
-      <UpdateProject/>
-      <AddUserInfo/> */}
     </div>
   );
 }
