@@ -60,10 +60,10 @@ export default function AddUserInfo({ operator }) {
 
   const getProjectsMapped = () => {
     axios
-      .deete(`http://172.17.160.1:2023/ResourceMappedById/${props.row.id}`)
+      .deete("http://172.17.160.1:2023/getAllResourceMapped")
       .then((response) => {
         console.log(response.data);
-        getProjectsMapped();
+        setProjectsMapped(response.data || []);
       })
       .catch((error) => console.log(error));
   };
@@ -120,9 +120,12 @@ export default function AddUserInfo({ operator }) {
       <IconButton
         onClick={() => {
           axios
-            .get("http://172.17.160.1:2023/getAllResources")
+            .deete(
+              `http://172.17.160.1:2023/ResourceMappedById/${props.row.id}`
+            )
             .then((response) => {
-              console.log(response);
+              console.log(response.data);
+              getProjectsMapped();
             })
             .catch((error) => console.log(error));
         }}
