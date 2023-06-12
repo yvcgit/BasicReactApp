@@ -14,7 +14,7 @@ export default function UpdateProject() {
   const [Projects, setProjects] = React.useState([]);
   const [ProjectsUpdated, setProjectsUpdated] = React.useState({
     id: "",
-    ProjectName: "",
+    projectName: "",
   });
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function UpdateProject() {
 
     setProjectsUpdated({
       id: "",
-      ProjectName: "",
+      projectName: "",
     });
   };
   return (
@@ -88,13 +88,13 @@ export default function UpdateProject() {
                   <TextField
                     fullWidth
                     label="Project Name"
-                    value={ProjectsUpdated.ProjectName}
+                    value={ProjectsUpdated.projectName}
                     variant="outlined"
                     type="text"
                     onChange={(e) => {
                       setProjectsUpdated({
                         ...ProjectsUpdated,
-                        ProjectName: e.target.value,
+                        projectName: e.target.value,
                       });
                     }}
                   />
