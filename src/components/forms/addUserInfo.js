@@ -1,4 +1,12 @@
-import { Button, Grid, IconButton, Paper, Typography } from "@mui/material";
+import {
+    Alert,
+  Button,
+  Grid,
+  IconButton,
+  Paper,
+  Snackbar,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import InputButton from "../inputs/inputButton";
@@ -11,12 +19,12 @@ import Select from "@mui/material/Select";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-
-
 export default function AddUserInfo({ operator }) {
   const [Projects, setProjects] = React.useState([]);
   const [Resources, setResources] = React.useState([]);
   const [ProjectsMapped, setProjectsMapped] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState("");
 
   const [ProjectsUpdated, setProjectsUpdated] = React.useState({
     resourceId: "",
@@ -70,6 +78,8 @@ export default function AddUserInfo({ operator }) {
       .then(function (response) {
         console.log(response);
         getProjectsMapped();
+        setMessage(response.data);
+        setOpen(true);
       })
       .catch(function (error) {
         console.log(error);
@@ -132,16 +142,23 @@ export default function AddUserInfo({ operator }) {
           },
           {
             field: "Actions",
-            headerName: 'Actions',
-            renderCell:Actions,
+            headerName: "Actions",
+            renderCell: Actions,
             flex: 1,
           },
         ];
 
-  
+  const handleClose = (event, reason) => {
+    setOpen(false);
+  };
 
   return (
     <Box p={2} m={2}>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} sx={{ width: "100%" }}>
+          {message}
+        </Alert>
+      </Snackbar>
       <Grid container spacing={2} justifyContent="center">
         <Grid item md={6}>
           <Paper>
