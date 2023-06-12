@@ -8,9 +8,12 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { DataGrid } from "@mui/x-data-grid";
+
 export default function AddUserInfo() {
   const [Projects, setProjects] = React.useState([]);
   const [Resources, setResources] = React.useState([]);
+  const [ProjectsMapped, setProjectsMapped] = React.useState([]);
 
   const [ProjectsUpdated, setProjectsUpdated] = React.useState({
     resourceId: "",
@@ -42,16 +45,44 @@ export default function AddUserInfo() {
       })
       .then(function (response) {
         console.log(response);
+        getProjectsMapped();
       })
       .catch(function (error) {
         console.log(error);
       });
 
     setProjectsUpdated({
-        resourceId: "",
-        projectId: "",
+      resourceId: "",
+      projectId: "",
     });
   };
+
+  const getProjectsMapped = () => {
+    axios
+      .get("http://172.17.160.1:2023/getAllResourceMapped")
+      .then((response) => {
+        console.log(response.data);
+        setProjectsMapped(response.data || []);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    getProjectsMapped();
+  }, [""]);
+
+  const columns = [
+    {
+      field: "id",
+      headerName: "ID",
+      flex: 1,
+    },
+    {
+      field: "projectName",
+      headerName: "project Name",
+      flex: 1,
+    },
+  ];
 
   return (
     <Box p={2} m={2}>
@@ -131,6 +162,24 @@ export default function AddUserInfo() {
                   >
                     Add Project to User
                   </Button>
+                </Grid>
+
+                <Grid item md={12}>
+                  <Box m={2}>
+                    <DataGrid
+                      rows={ProjectsMapped || []}
+                      columns={columns}
+                      initialState={{
+                        pagination: {
+                          paginationModel: {
+                            pageSize: 5,
+                          },
+                        },
+                      }}
+                      pageSizeOptions={[5]}
+                      disableRowSelectionOnClick
+                    />
+                  </Box>
                 </Grid>
               </Grid>
             </Box>
