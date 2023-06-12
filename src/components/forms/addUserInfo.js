@@ -5,6 +5,17 @@ import InputButton from "../inputs/inputButton";
 import SelectField from "../inputs/selectField";
 
 export default function AddUserInfo() {
+
+
+
+
+
+
+
+
+
+
+    
   return (
     <Box p={2} m={2}>
       <Grid container spacing={2} justifyContent="center">
