@@ -45,9 +45,26 @@ export default function LoginForm(props) {
           /* and other goodies */
         }) => (
           <Form>
-            <Grid container spacing={2} justifyContent="center">
+            <Grid
+              container
+              spacing={2}
+              justifyContent="center"
+              style={{
+                height: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "center",
+                background:
+                  "linear-gradient(167deg, rgb(137 142 28) 0%, rgb(226, 248, 255) 100%)",
+              }}
+            >
               <Grid item md={6}>
-                <Paper>
+                <Paper
+                  style={{
+                    background:
+                      "linear-gradient(167deg, rgba(0,146,187,1) 0%, rgba(226,248,255,1) 100%)",
+                  }}
+                >
                   <Box p={2}>
                     <Grid container spacing={2} justifyContent="center">
                       {isError && (
