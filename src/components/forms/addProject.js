@@ -87,27 +87,28 @@ export default function AddProject() {
                     Add Project
                   </Button>
                 </Grid>
+                <Grid item md={12}>
+                  <Box m={2}>
+                    <DataGrid
+                      rows={Projects || []}
+                      columns={columns}
+                      initialState={{
+                        pagination: {
+                          paginationModel: {
+                            pageSize: 5,
+                          },
+                        },
+                      }}
+                      pageSizeOptions={[5]}
+                      disableRowSelectionOnClick
+                    />
+                  </Box>
+                </Grid>
               </Grid>
             </Box>
           </Paper>
         </Grid>
       </Grid>
-
-      <Box m={2}>
-        <DataGrid
-          rows={Projects || []}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
-              },
-            },
-          }}
-          pageSizeOptions={[5]}
-          disableRowSelectionOnClick
-        />
-      </Box>
     </Box>
   );
 }
