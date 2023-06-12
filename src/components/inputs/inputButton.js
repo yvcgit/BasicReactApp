@@ -6,7 +6,7 @@ export default function InputButton(props) {
 
   return (
     <div>
-      <Button variant={variant} color={color}>
+      <Button size='small' variant={variant} color={color}>
         {label}
       </Button>
     </div>

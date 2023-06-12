@@ -12,6 +12,8 @@ export default function TextInput(props) {
         variant={variant}
         name={name}
         type={type || 'text'}
+        fullWidth
+        
       />
     </div>
   );
