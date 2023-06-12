@@ -5,17 +5,32 @@ import InputButton from "../inputs/inputButton";
 import SelectField from "../inputs/selectField";
 
 export default function AddUserInfo() {
+  const [Projects, setProjects] = React.useState([]);
+  const [Resources, setResources] = React.useState([]);
 
+  const [ProjectsUpdated, setProjectsUpdated] = React.useState({
+    ResourceId: "",
+    projectId: "",
+  });
 
+  useEffect(() => {
+    axios
+      .get("http://172.17.160.1:2023/getAllProjects")
+      .then((response) => {
+        setProjects(response.data || []);
+      })
+      .catch((error) => console.log(error));
+  }, [""]);
 
+  useEffect(() => {
+    axios
+      .get("http://172.17.160.1:2023/getAllResources")
+      .then((response) => {
+        setResources(response.data || []);
+      })
+      .catch((error) => console.log(error));
+  }, [""]);
 
-
-
-
-
-
-
-    
   return (
     <Box p={2} m={2}>
       <Grid container spacing={2} justifyContent="center">
@@ -25,23 +40,75 @@ export default function AddUserInfo() {
               <Grid container spacing={2}>
                 <Grid item md={12}>
                   <Typography variant="h6" align="center">
-                    Add User
+                    Add Project to User
                   </Typography>
                 </Grid>
                 <Grid item md={12}>
-                  <SelectField label="Select Resource" />
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      {"Select Resource"}
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={ProjectsUpdated.resourceId}
+                      onChange={(e) => {
+                        setProjectsUpdated({
+                          ...ProjectsUpdated,
+                          resourceId: e.target.value,
+                        });
+                      }}
+                      label="Age"
+                    >
+                      {Resources.map((item, index) => {
+                        return (
+                          <MenuItem value={item.id}>
+                            {item.resourceName}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
                 </Grid>
 
                 <Grid item md={12}>
-                  <SelectField label="Select Project" />
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      {"Select Project"}
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={ProjectsUpdated.projectId}
+                      onChange={(e) => {
+                        setProjectsUpdated({
+                          ...ProjectsUpdated,
+                          projectId: e.target.value,
+                        });
+                      }}
+                      label="Age"
+                    >
+                      {Projects.map((item, index) => {
+                        return (
+                          <MenuItem value={item.id}>
+                            {item.projectName}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
                 </Grid>
 
                 <Grid item md={12}>
-                  <InputButton
-                    label="Update Project"
+                  <Button
+                    onClick={() => {
+                      updateProject();
+                    }}
                     variant="contained"
                     color="primary"
-                  />
+                  >
+                    Add Project to User
+                  </Button>
                 </Grid>
               </Grid>
             </Box>
