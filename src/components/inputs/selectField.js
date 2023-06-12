@@ -14,9 +14,7 @@ export default function SelectField(props) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
           label="Age"
-          onChange={handleChange}
         >
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
