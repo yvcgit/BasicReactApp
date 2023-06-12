@@ -120,7 +120,7 @@ export default function AddUserInfo({ operator }) {
       <IconButton
         onClick={() => {
           axios
-            .deete(
+            .delete(
               `http://172.17.160.1:2023/ResourceMappedById/${props.row.id}`
             )
             .then((response) => {
