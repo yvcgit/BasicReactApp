@@ -9,48 +9,67 @@ import AddUserInfo from "./components/forms/addUserInfo";
 import Header from "./components/header";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
+import React from "react";
+import Home from "./components/home";
+
+const menuItemsAdmin = [
+  { name: "Home", path: "/Home" },
+  { name: "Add Project", path: "/AddProject" },
+  { name: "Add Resource", path: "/AddResource" },
+  { name: "Update Resource", path: "/UpdateResource" },
+  { name: "Update Project", path: "/UpdateProject" },
+  { name: "AddUser Info", path: "/AddUserInfo" },
+];
+
+const menuItemsUser = [
+  { name: "Home", path: "/Home" },
+  { name: "AddUser Info", path: "/AddUserInfo" },
+];
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [useDetails, setUseDetails] = React.useState({});
+
   return (
     <div className="App">
-      <Header />
-      <Box mt={10}>
-        <Routes>
-          {/* <Route exact path="/" component={Home} />
-<Route exact path="/home" component={Home} /> */}
-          <Route
-            exact
-            path="/login"
-            element={<LoginForm />}
+      {isLoggedIn ? (
+        <>
+          <Header
+            menuItems={
+              useDetails.email === "user" ? menuItemsUser : menuItemsAdmin
+            }
           />
-          <Route
-            exact
-            path="/AddResource"
-            element={<AddResource />}
-          />
-          <Route
-            exact
-            path="/AddProject"
-            element={<AddProject />}
-          />
-          <Route
-            exact
-            path="/UpdateResource"
-            element={<UpdateResource />}
-          />
-          <Route
-            exact
-            path="/UpdateProject"
-            element={<UpdateProject />}
-          />
-          <Route
-            exact
-            path="/AddUserInfo"
-            element={<AddUserInfo />}
-          />
-        </Routes>
-      </Box>
-
+          <Box mt={10}>
+            <Routes>
+              <Route
+                exact
+                path="/"
+                element={<Home operator={useDetails.email} />}
+              />
+              <Route
+                exact
+                path="/Home"
+                element={<Home operator={useDetails.email} />}
+              />
+              <Route exact path="/login" element={<LoginForm />} />
+              <Route exact path="/AddResource" element={<AddResource />} />
+              <Route exact path="/AddProject" element={<AddProject />} />
+              <Route
+                exact
+                path="/UpdateResource"
+                element={<UpdateResource />}
+              />
+              <Route exact path="/UpdateProject" element={<UpdateProject />} />
+              <Route exact path="/AddUserInfo" element={<AddUserInfo />} />
+            </Routes>
+          </Box>
+        </>
+      ) : (
+        <LoginForm
+          setIsLoggedIn={setIsLoggedIn}
+          setUseDetails={setUseDetails}
+        />
+      )}
       {/* <LoginForm />
       <AddResource/>
       <AddProject/>
