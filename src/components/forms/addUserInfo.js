@@ -37,7 +37,7 @@ export default function AddUserInfo() {
 
   const updateProject = async () => {
     await axios
-      .post("http://172.17.160.1:2023/updateProject", {
+      .post("http://172.17.160.1:2023/saveResourceMapped", {
         ...ProjectsUpdated,
       })
       .then(function (response) {
