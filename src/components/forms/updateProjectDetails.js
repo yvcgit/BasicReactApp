@@ -76,7 +76,7 @@ export default function UpdateProject() {
                       {Projects.map((item, index) => {
                         return (
                           <MenuItem value={item.id}>
-                            {item.ProjectName}
+                            {item.projectName}
                           </MenuItem>
                         );
                       })}
