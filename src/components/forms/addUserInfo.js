@@ -78,6 +78,11 @@ export default function AddUserInfo() {
       flex: 1,
     },
     {
+      field: "resourceName",
+      headerName: "Resource Name",
+      flex: 1,
+    },
+    {
       field: "projectName",
       headerName: "project Name",
       flex: 1,
