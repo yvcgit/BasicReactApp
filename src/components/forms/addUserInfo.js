@@ -13,7 +13,7 @@ export default function AddUserInfo() {
   const [Resources, setResources] = React.useState([]);
 
   const [ProjectsUpdated, setProjectsUpdated] = React.useState({
-    ResourceId: "",
+    resourceId: "",
     projectId: "",
   });
 
@@ -34,6 +34,24 @@ export default function AddUserInfo() {
       })
       .catch((error) => console.log(error));
   }, [""]);
+
+  const updateProject = async () => {
+    await axios
+      .post("http://172.17.160.1:2023/updateProject", {
+        ...ProjectsUpdated,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    setProjectsUpdated({
+        resourceId: "",
+        projectId: "",
+    });
+  };
 
   return (
     <Box p={2} m={2}>
@@ -106,7 +124,7 @@ export default function AddUserInfo() {
                 <Grid item md={12}>
                   <Button
                     onClick={() => {
-                    //   updateProject();
+                      updateProject();
                     }}
                     variant="contained"
                     color="primary"
