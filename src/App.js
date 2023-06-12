@@ -9,8 +9,9 @@ import AddUserInfo from "./components/forms/addUserInfo";
 import Header from "./components/header";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Home from "./components/home";
+import axios from 'axios';
 
 const menuItemsAdmin = [
   { name: "Home", path: "/Home" },
@@ -29,6 +30,13 @@ const menuItemsUser = [
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [useDetails, setUseDetails] = React.useState({});
+
+  useEffect(() => {
+    axios
+      .get("http://172.17.160.1:2023/getMessage")
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+  }, [""]);
 
   return (
     <div className="App">
