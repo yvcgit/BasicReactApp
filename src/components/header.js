@@ -18,17 +18,9 @@ import { NavLink } from "react-router-dom";
 
 const drawerWidth = 240;
 const navItems = ["My Account"];
-const menuItems = [
-  { name: "Home", path: "/Home" },
-  { name: "Add Project", path: "/AddProject" },
-  { name: "Add Resource", path: "/AddResource" },
-  { name: "Update Resource", path: "/UpdateResource" },
-  { name: "Update Project", path: "/UpdateProject" },
-  { name: "AddUser Info", path: "/AddUserInfo" },
-];
 
 function Header(props) {
-  const { window } = props;
+  const { window, menuItems = [] } = props;
   const [open, setMenuOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -89,7 +81,12 @@ function Header(props) {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item} size='small' sx={{ color: "#fff", border:'1px solid #fff' }} variant='outlined'>
+              <Button
+                key={item}
+                size="small"
+                sx={{ color: "#fff", border: "1px solid #fff" }}
+                variant="outlined"
+              >
                 {item}
               </Button>
             ))}

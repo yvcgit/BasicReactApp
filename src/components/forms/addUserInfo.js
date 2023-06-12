@@ -3,7 +3,6 @@ import { Box } from "@mui/system";
 import React from "react";
 import InputButton from "../inputs/inputButton";
 import SelectField from "../inputs/selectField";
-import TextInput from "../inputs/textInput";
 
 export default function AddUserInfo() {
   return (
@@ -15,7 +14,7 @@ export default function AddUserInfo() {
               <Grid container spacing={2}>
                 <Grid item md={12}>
                   <Typography variant="h6" align="center">
-                    UpdateProject
+                    Add User
                   </Typography>
                 </Grid>
                 <Grid item md={12}>

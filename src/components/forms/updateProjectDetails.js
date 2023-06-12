@@ -15,7 +15,7 @@ export default function UpdateProject() {
               <Grid container spacing={2}>
                 <Grid item md={12}>
                   <Typography variant="h6" align="center">
-                    UpdateProject
+                    Update Project
                   </Typography>
                 </Grid>
 
