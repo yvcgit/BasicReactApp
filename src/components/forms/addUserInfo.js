@@ -83,7 +83,7 @@ export default function AddUserInfo({ operator }) {
 
   const getProjectsMapped = () => {
     axios
-      .deete("http://172.17.160.1:2023/getAllResourceMapped")
+      .get("http://172.17.160.1:2023/getAllResourceMapped")
       .then((response) => {
         console.log(response.data);
         setProjectsMapped(response.data || []);
