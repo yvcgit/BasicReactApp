@@ -11,6 +11,8 @@ import Select from "@mui/material/Select";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+
+
 export default function AddUserInfo({ operator }) {
   const [Projects, setProjects] = React.useState([]);
   const [Resources, setResources] = React.useState([]);
@@ -20,6 +22,27 @@ export default function AddUserInfo({ operator }) {
     resourceId: "",
     projectId: "",
   });
+
+  const Actions = (props) => {
+    console.log(props);
+    return (
+      <IconButton
+        onClick={() => {
+          axios
+            .delete(
+              `http://172.17.160.1:2023/ResourceMappedById/${props.row.id}`
+            )
+            .then((response) => {
+              console.log(response.data);
+              getProjectsMapped();
+            })
+            .catch((error) => console.log(error));
+        }}
+      >
+        <DeleteIcon fontSize="small" />
+      </IconButton>
+    );
+  };
 
   useEffect(() => {
     axios
@@ -114,26 +137,7 @@ export default function AddUserInfo({ operator }) {
           },
         ];
 
-  const Actions = (props) => {
-    console.log(props);
-    return (
-      <IconButton
-        onClick={() => {
-          axios
-            .delete(
-              `http://172.17.160.1:2023/ResourceMappedById/${props.row.id}`
-            )
-            .then((response) => {
-              console.log(response.data);
-              getProjectsMapped();
-            })
-            .catch((error) => console.log(error));
-        }}
-      >
-        <DeleteIcon fontSize="small" />
-      </IconButton>
-    );
-  };
+  
 
   return (
     <Box p={2} m={2}>
