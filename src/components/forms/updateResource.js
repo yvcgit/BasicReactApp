@@ -9,6 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { async } from "q";
 
 export default function UpdateResource() {
   const [Resources, setResources] = React.useState([]);
@@ -17,13 +18,16 @@ export default function UpdateResource() {
     resourceName: "",
   });
 
-  useEffect(() => {
+  const getAllResources =  () => {
     axios
       .get("http://172.17.160.1:2023/getAllResources")
       .then((response) => {
         setResources(response.data || []);
       })
       .catch((error) => console.log(error));
+  };
+  useEffect(() => {
+    getAllResources();
   }, [""]);
 
   const updateResource = async () => {
@@ -33,6 +37,7 @@ export default function UpdateResource() {
       })
       .then(function (response) {
         console.log(response);
+        getAllResources();
       })
       .catch(function (error) {
         console.log(error);

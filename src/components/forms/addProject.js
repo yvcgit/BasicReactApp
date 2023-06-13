@@ -11,6 +11,7 @@ export default function AddProject() {
   const [Projects, setProjects] = React.useState([]);
 
   const addProject = async (projectName) => {
+    if(project){
     await axios
       .post("http://172.17.160.1:2023/saveProject", {
         projectName: project,
@@ -22,7 +23,7 @@ export default function AddProject() {
       .catch(function (error) {
         console.log(error);
       });
-
+    }
     setProjectName("");
   };
 
@@ -39,18 +40,18 @@ export default function AddProject() {
     getProjects();
   }, [""]);
 
-  const columns = [
-    {
-      field: "id",
-      headerName: "ID",
-      flex: 1,
-    },
-    {
-      field: "projectName",
-      headerName: "project Name",
-      flex: 1,
-    },
-  ];
+  // const columns = [
+  //   {
+  //     field: "id",
+  //     headerName: "ID",
+  //     flex: 1,
+  //   },
+  //   {
+  //     field: "projectName",
+  //     headerName: "project Name",
+  //     flex: 1,
+  //   },
+  // ];
 
   return (
     <Box p={2} m={2}>
@@ -74,6 +75,7 @@ export default function AddProject() {
                     onChange={(e) => {
                       setProjectName(e.target.value);
                     }}
+                    required
                   />
                 </Grid>
                 <Grid item md={12}>
@@ -87,7 +89,7 @@ export default function AddProject() {
                     Add Project
                   </Button>
                 </Grid>
-                <Grid item md={12}>
+                {/* <Grid item md={12}>
                   <Box m={2}>
                     <DataGrid
                       rows={Projects || []}
@@ -103,7 +105,7 @@ export default function AddProject() {
                       disableRowSelectionOnClick
                     />
                   </Box>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Box>
           </Paper>

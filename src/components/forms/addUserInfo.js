@@ -71,6 +71,7 @@ export default function AddUserInfo({ operator }) {
   }, [""]);
 
   const updateProject = async () => {
+    if(ProjectsUpdated.resourceId && ProjectsUpdated.projectId){
     await axios
       .post("http://172.17.160.1:2023/saveResourceMapped", {
         ...ProjectsUpdated,
@@ -84,7 +85,7 @@ export default function AddUserInfo({ operator }) {
       .catch(function (error) {
         console.log(error);
       });
-
+    }
     setProjectsUpdated({
       resourceId: "",
       projectId: "",

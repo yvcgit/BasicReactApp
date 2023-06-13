@@ -17,13 +17,26 @@ export default function UpdateProject() {
     projectName: "",
   });
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   axios
+  //     .get("http://172.17.160.1:2023/getAllProjects")
+  //     .then((response) => {
+  //       setProjects(response.data || []);
+  //     })
+  //     .catch((error) => console.log(error));
+  // }, [""]);
+
+  const getProjects = () => {
     axios
       .get("http://172.17.160.1:2023/getAllProjects")
       .then((response) => {
         setProjects(response.data || []);
       })
       .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    getProjects();
   }, [""]);
 
   const updateProject = async () => {
@@ -33,6 +46,7 @@ export default function UpdateProject() {
       })
       .then(function (response) {
         console.log(response);
+        getProjects();
       })
       .catch(function (error) {
         console.log(error);

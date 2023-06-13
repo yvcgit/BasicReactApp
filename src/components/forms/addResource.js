@@ -12,6 +12,7 @@ export default function AddResource() {
   });
 
   const addResource = async (ResourceName) => {
+    if(Resource.resourceId && Resource.resourceName){
     await axios
       .post("http://172.17.160.1:2023/saveResource", {
         ...Resource,
@@ -22,7 +23,7 @@ export default function AddResource() {
       .catch(function (error) {
         console.log(error);
       });
-
+    }
     setResourceName({
       resourceId: "",
       resourceName: "",
@@ -53,10 +54,12 @@ export default function AddResource() {
                         resourceId: e.target.value,
                       });
                     }}
+                    required
                   />
                 </Grid>
                 <Grid item md={12}>
                   <TextField
+                    required
                     fullWidth
                     label="Resource Name"
                     value={Resource.resourceName}
