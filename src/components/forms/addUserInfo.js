@@ -1,5 +1,5 @@
 import {
-    Alert,
+  Alert,
   Button,
   Grid,
   IconButton,
@@ -71,20 +71,20 @@ export default function AddUserInfo({ operator }) {
   }, [""]);
 
   const updateProject = async () => {
-    if(ProjectsUpdated.resourceId && ProjectsUpdated.projectId){
-    await axios
-      .post("http://172.17.160.1:2023/saveResourceMapped", {
-        ...ProjectsUpdated,
-      })
-      .then(function (response) {
-        console.log(response);
-        getProjectsMapped();
-        setMessage(response.data);
-        setOpen(true);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    if (ProjectsUpdated.resourceId && ProjectsUpdated.projectId) {
+      await axios
+        .post("http://172.17.160.1:2023/saveResourceMapped", {
+          ...ProjectsUpdated,
+        })
+        .then(function (response) {
+          console.log(response);
+          getProjectsMapped();
+          setMessage(response.data);
+          setOpen(true);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
     setProjectsUpdated({
       resourceId: "",
@@ -242,6 +242,11 @@ export default function AddUserInfo({ operator }) {
                   </>
                 )}
                 <Grid item md={12}>
+                {operator === "admin" && (
+                  <Typography variant="h6" align="center">
+                    View Resource Mapped Info
+                  </Typography>
+                )}
                   <Box m={2}>
                     <DataGrid
                       rows={ProjectsMapped || []}
